@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour {
     public static int PlayerDoneCount = 0;
     public static bool ReadyToReset = false;
 
+    public static bool InitializedScoreArr = false;
+
     public static List<GameObject> PlayerLightsArr = new List<GameObject>();
+    public static List<int> PlayerScoreArr = new List<int>();
 
     // DEV STUFF
     public int ManualPlayerCount = 0;
@@ -27,6 +30,13 @@ public class GameManager : MonoBehaviour {
         PlayerCount = ManualPlayerCount;
 
         Cursor.visible = false;
+
+        if (!InitializedScoreArr) {
+            InitializedScoreArr = true;
+            for (int i = 0; i < PlayerCount; i++) {
+                GameManager.PlayerScoreArr.Add(0);
+            }
+        }
         
         gamepadManagerScript = GetComponent<GamepadManager>();
         playerInstanceSpawnerScript = GetComponent<PlayerInstanceSpawner>();

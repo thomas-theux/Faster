@@ -8,6 +8,7 @@ public class PlayerSheet : MonoBehaviour {
 
     private GameObject GameManagerGO;
     private TimeManager timeManagerScript;
+    private BulbManager bulbManagerScript;
 
     public int PlayerID = 0;
     private Player player;
@@ -28,8 +29,10 @@ public class PlayerSheet : MonoBehaviour {
 
 
     void Start() {
+        bulbManagerScript = GameManager.PlayerLightsArr[PlayerID].GetComponent<BulbManager>();
+
         player = ReInput.players.GetPlayer(PlayerID);
-        PlayerLightGO = PlayerBulbGO.transform.GetChild(0).gameObject;
+        PlayerLightGO = bulbManagerScript.PlayerLight;
     }
 
 
@@ -59,7 +62,7 @@ public class PlayerSheet : MonoBehaviour {
                     PlayerLightGO.SetActive(true);
                     
                     PlayerLightGO.GetComponent<Image>().color = ColorManager.KeyGreen;
-                    ParticleSystem.MainModule main = PlayerLightGO.transform.GetChild(0).GetComponent<ParticleSystem>().main;
+                    ParticleSystem.MainModule main = bulbManagerScript.PlayerParticles.GetComponent<ParticleSystem>().main;
                     main.startColor = ColorManager.ParticlesGreen;
                 } else {
                     // Player pressed the button too early
@@ -70,7 +73,7 @@ public class PlayerSheet : MonoBehaviour {
                     PlayerLightGO.SetActive(true);
                     
                     PlayerLightGO.GetComponent<Image>().color = ColorManager.KeyRed;
-                    ParticleSystem.MainModule main = PlayerLightGO.transform.GetChild(0).GetComponent<ParticleSystem>().main;
+                    ParticleSystem.MainModule main = bulbManagerScript.PlayerParticles.GetComponent<ParticleSystem>().main;
                     main.startColor = ColorManager.ParticlesRed;
                 }
             } else {

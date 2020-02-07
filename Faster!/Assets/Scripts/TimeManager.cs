@@ -29,13 +29,9 @@ public class TimeManager : MonoBehaviour {
         SetRandomTime();
         timerIsRunning = true;
 
-        // Hashtable dictEntry = new Hashtable();
-        // dictEntry.Add("Player ID", 0);
-        // dictEntry.Add("Player Time", 0);
-
         for (int i = 0; i < GameManager.PlayerCount; i++) {
-            // timerDict.Add(dictEntry);
             timesArr.Add(0);
+            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerScoreArr[i] + "";
         }
     }
 
@@ -135,18 +131,38 @@ public class TimeManager : MonoBehaviour {
         AudioManager.instance.Play("PopUp");
 
         for (int i = 0; i < GameManager.PlayerCount; i++) {
-            GameObject newPopUp = GameManager.PlayerLightsArr[i].transform.GetChild(1).gameObject;
+            BulbManager bulbManagerScript = GameManager.PlayerLightsArr[i].GetComponent<BulbManager>();
+
+            GameObject newPopUp = bulbManagerScript.TimePopUp;
             newPopUp.SetActive(true);
 
             // float playerTime = (float)timerDict[i]["Player Time"];
             float playerTime = timesArr[i];
             
             if (playerTime > 99999) {
-                newPopUp.transform.GetChild(0).GetComponent<TMP_Text>().text = "–";
+                bulbManagerScript.PopUpTime.GetComponent<TMP_Text>().text = "–";
             } else {
-                newPopUp.transform.GetChild(0).GetComponent<TMP_Text>().text = playerTime.ToString("F1");
+                bulbManagerScript.PopUpTime.GetComponent<TMP_Text>().text = playerTime.ToString("F1");
             }
         }
+
+        FindWinner();
+    }
+
+
+    private void FindWinner() {
+        float bestTime = 9999999;
+
+        for (int i = 0; i < GameManager.PlayerCount; i++) {
+            if (timesArr[i] < bestTime) {
+                bestTime = timesArr[i];
+            }
+        }
+
+        int findWinnerIndex = timesArr.IndexOf(bestTime);
+
+        GameManager.PlayerScoreArr[findWinnerIndex]++;
+        GameManager.PlayerLightsArr[findWinnerIndex].GetComponent<BulbManager>().ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerScoreArr[findWinnerIndex] + "";
     }
 
 

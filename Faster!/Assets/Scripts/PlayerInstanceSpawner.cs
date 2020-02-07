@@ -40,6 +40,8 @@ public class PlayerInstanceSpawner : MonoBehaviour {
 
             GameManager.PlayerLightsArr.Add(newPlayerBulb);
         }
+
+        // print(GameManager.PlayerScoreArr.Count);
     }
 
 }
