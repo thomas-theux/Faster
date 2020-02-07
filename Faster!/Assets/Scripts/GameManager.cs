@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour {
         // DEV STUFF
         ConnectedGamepads = ManualPlayerCount;
         PlayerCount = ManualPlayerCount;
+
+        Cursor.visible = false;
         
         gamepadManagerScript = GetComponent<GamepadManager>();
         playerInstanceSpawnerScript = GetComponent<PlayerInstanceSpawner>();

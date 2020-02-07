@@ -52,12 +52,16 @@ public class PlayerSheet : MonoBehaviour {
 
                 if (TimeManager.LightIsOn) {
                     // Player presses the button properly (not too early)
+                    AudioManager.instance.Play("ButtonPress");
+
                     timeManagerScript.GetTime(PlayerID, true);
 
                     PlayerLightGO.SetActive(true);
                     PlayerLightGO.GetComponent<Image>().color = ColorManager.KeyGreen;
                 } else {
                     // Player pressed the button too early
+                    AudioManager.instance.Play("FailSound");
+
                     timeManagerScript.GetTime(PlayerID, false);
 
                     PlayerLightGO.SetActive(true);
@@ -65,6 +69,7 @@ public class PlayerSheet : MonoBehaviour {
                 }
             } else {
                 // Player already pressed the button
+                AudioManager.instance.Play("FailSound");
             }
         }
     }

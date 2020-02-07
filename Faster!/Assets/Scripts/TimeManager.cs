@@ -14,7 +14,7 @@ public class TimeManager : MonoBehaviour {
 
     private float delayTime = 0;
     public float minDelay = 0.5f;
-    public float maxDelay = 5.0f;
+    public float maxDelay = 10.0f;
 
     private float lightOnTime = 0;
     private bool ShowPopUps = false;
@@ -61,6 +61,7 @@ public class TimeManager : MonoBehaviour {
         // Reset everything
         if (GameManager.ReadyToReset) {
             if (ReInput.players.GetPlayer(0).GetButtonDown("Restart")) {
+                AudioManager.instance.Play("Restart");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
@@ -76,6 +77,8 @@ public class TimeManager : MonoBehaviour {
         delayTime -= Time.deltaTime;
 
         if (delayTime <= 0) {
+            AudioManager.instance.Play("LightOn");
+
             timerIsRunning = false;
             lightBulbGO.SetActive(true);
             lightBulbGO.GetComponent<Image>().color = ColorManager.KeyWhite;
@@ -97,7 +100,9 @@ public class TimeManager : MonoBehaviour {
 
             // Calculate to milliseconds
             newTime *= 1000;
-            newTime = Mathf.Round(newTime);
+            newTime = Mathf.Round(newTime * 100f) / 100f;
+            // newTime *= 1000;
+            // newTime = Mathf.Round(newTime);
         }
 
         // timerDict[playerID]["Player ID"] = playerID;
@@ -127,6 +132,8 @@ public class TimeManager : MonoBehaviour {
 
 
     private void ShowTimePopUps() {
+        AudioManager.instance.Play("PopUp");
+
         for (int i = 0; i < GameManager.PlayerCount; i++) {
             GameObject newPopUp = GameManager.PlayerLightsArr[i].transform.GetChild(1).gameObject;
             newPopUp.SetActive(true);
@@ -137,7 +144,7 @@ public class TimeManager : MonoBehaviour {
             if (playerTime > 99999) {
                 newPopUp.transform.GetChild(0).GetComponent<TMP_Text>().text = "–";
             } else {
-                newPopUp.transform.GetChild(0).GetComponent<TMP_Text>().text = playerTime + "";
+                newPopUp.transform.GetChild(0).GetComponent<TMP_Text>().text = playerTime.ToString("F1");
             }
         }
     }
