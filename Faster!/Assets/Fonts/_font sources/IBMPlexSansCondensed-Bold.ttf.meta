@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 28113401a6dbf4f4485b42f864589758
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: IBM Plex Sans Condensed
+  fontNames:
+  - IBM Plex Sans Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 36acba6a9ce1f426788d7164c710236a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
