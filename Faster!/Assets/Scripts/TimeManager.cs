@@ -14,7 +14,7 @@ public class TimeManager : MonoBehaviour {
 
     private float delayTime = 0;
     public float minDelay = 0.5f;
-    public float maxDelay = 10.0f;
+    public float maxDelay = 1.0f;
 
     private float lightOnTime = 0;
     private bool ShowPopUps = false;

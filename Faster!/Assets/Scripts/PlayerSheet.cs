@@ -57,7 +57,10 @@ public class PlayerSheet : MonoBehaviour {
                     timeManagerScript.GetTime(PlayerID, true);
 
                     PlayerLightGO.SetActive(true);
+                    
                     PlayerLightGO.GetComponent<Image>().color = ColorManager.KeyGreen;
+                    ParticleSystem.MainModule main = PlayerLightGO.transform.GetChild(0).GetComponent<ParticleSystem>().main;
+                    main.startColor = ColorManager.ParticlesGreen;
                 } else {
                     // Player pressed the button too early
                     AudioManager.instance.Play("FailSound");
@@ -65,7 +68,10 @@ public class PlayerSheet : MonoBehaviour {
                     timeManagerScript.GetTime(PlayerID, false);
 
                     PlayerLightGO.SetActive(true);
+                    
                     PlayerLightGO.GetComponent<Image>().color = ColorManager.KeyRed;
+                    ParticleSystem.MainModule main = PlayerLightGO.transform.GetChild(0).GetComponent<ParticleSystem>().main;
+                    main.startColor = ColorManager.ParticlesRed;
                 }
             } else {
                 // Player already pressed the button
