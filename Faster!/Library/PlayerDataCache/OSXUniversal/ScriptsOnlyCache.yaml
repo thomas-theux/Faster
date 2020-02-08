@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - AudioManager
+    - BulbManager
     - GameManager
     - GamepadManager
     - PlayerInstanceSpawner
@@ -112,6 +113,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12918}
     - Class: 114
       Script: {instanceID: 13058}
+    - Class: 114
+      Script: {instanceID: 16648}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -741,7 +744,7 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 33d92cad600a606ca999e03401a1ca3e
+      Hash: e5b39c1c145676a501f64510f488100c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TimeManager
@@ -937,6 +940,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: dde40ab5f1eaad8262536326d52f1b8c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BulbManager
   platform: 2
   scenePathNames:
   - Assets/Scenes/LightMeUp.unity

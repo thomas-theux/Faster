@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour {
     public static List<GameObject> PlayerLightsArr = new List<GameObject>();
     public static List<int> PlayerScoreArr = new List<int>();
 
+    public static float BestTimeEver = 9999999;
+
     // DEV STUFF
     public int ManualPlayerCount = 0;
 

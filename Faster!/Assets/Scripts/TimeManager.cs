@@ -9,12 +9,14 @@ using Rewired;
 public class TimeManager : MonoBehaviour {
 
     public GameObject lightBulbGO;
+    public TMP_Text BestTimeEver;
+    public GameObject MSText;
 
     public static bool LightIsOn = false;
 
     private float delayTime = 0;
-    public float minDelay = 0.5f;
-    public float maxDelay = 1.0f;
+    public float minDelay = 1.0f;
+    public float maxDelay = 10.0f;
 
     private float lightOnTime = 0;
     private bool ShowPopUps = false;
@@ -32,6 +34,15 @@ public class TimeManager : MonoBehaviour {
         for (int i = 0; i < GameManager.PlayerCount; i++) {
             timesArr.Add(0);
             GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerScoreArr[i] + "";
+        }
+
+        // Display best time ever
+        if (GameManager.BestTimeEver < 999999) {
+            BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
+
+            if (!MSText.activeSelf) {
+                MSText.SetActive(true);
+            }
         }
     }
 
@@ -161,8 +172,18 @@ public class TimeManager : MonoBehaviour {
 
         int findWinnerIndex = timesArr.IndexOf(bestTime);
 
+        // Find best time ever
+        if (bestTime < GameManager.BestTimeEver) {
+            GameManager.BestTimeEver = bestTime;
+            BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
+        }
+
         GameManager.PlayerScoreArr[findWinnerIndex]++;
         GameManager.PlayerLightsArr[findWinnerIndex].GetComponent<BulbManager>().ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerScoreArr[findWinnerIndex] + "";
+
+        if (!MSText.activeSelf) {
+            MSText.SetActive(true);
+        }
     }
 
 
