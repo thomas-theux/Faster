@@ -370,7 +370,7 @@ MonoBehaviour:
   BestTimeEver: {fileID: 49656922}
   MSText: {fileID: 1181075928}
   minDelay: 1
-  maxDelay: 1
+  maxDelay: 10
   timesArr: []
 --- !u!1 &186043237
 GameObject:

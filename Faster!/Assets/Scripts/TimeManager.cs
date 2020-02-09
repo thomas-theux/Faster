@@ -33,7 +33,7 @@ public class TimeManager : MonoBehaviour {
 
         for (int i = 0; i < GameManager.PlayerCount; i++) {
             timesArr.Add(0);
-            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[i] + "";
+            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[i] + "";
             GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().sprite = GameManager.BadgeImages[GameManager.PlayerLevelArr[i]];
         }
 
@@ -191,7 +191,7 @@ public class TimeManager : MonoBehaviour {
 
         // Add one level and display the current level
         GameManager.PlayerLevelArr[findWinnerIndex]++;
-        bulbManagerScript.ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[findWinnerIndex] + "";
+        bulbManagerScript.LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[findWinnerIndex] + "";
 
         // Display new badge/level
         bulbManagerScript.PlayerBadge.GetComponent<Image>().sprite = GameManager.BadgeImages[GameManager.PlayerLevelArr[findWinnerIndex]];
