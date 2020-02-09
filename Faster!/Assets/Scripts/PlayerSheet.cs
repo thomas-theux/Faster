@@ -61,9 +61,9 @@ public class PlayerSheet : MonoBehaviour {
 
                     PlayerLightGO.SetActive(true);
                     
-                    PlayerLightGO.GetComponent<Image>().color = ColorManager.KeyGreen;
+                    PlayerLightGO.GetComponent<Image>().color = ColorManager.KeyWhite;
                     ParticleSystem.MainModule main = bulbManagerScript.PlayerParticles.GetComponent<ParticleSystem>().main;
-                    main.startColor = ColorManager.ParticlesGreen;
+                    main.startColor = ColorManager.ParticlesWhite;
                 } else {
                     // Player pressed the button too early
                     AudioManager.instance.Play("FailSound");

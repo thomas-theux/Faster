@@ -6,6 +6,7 @@ public class BulbManager : MonoBehaviour {
 
     public GameObject PlayerLight;
     public GameObject PlayerParticles;
+    public GameObject WinnerParticles;
     public GameObject TimePopUp;
     public GameObject PopUpTime;
     public GameObject PlayerBadge;

@@ -32,13 +32,13 @@ public class GameManager : MonoBehaviour {
     public static List<Sprite> BadgeImages = new List<Sprite>();
 
     // DEV STUFF
-    // public int ManualPlayerCount = 0;
+    public int ManualPlayerCount = 0;
 
 
     private void Awake() {
         // DEV STUFF
-        // ConnectedGamepads = ManualPlayerCount;
-        PlayerCount = GameManager.ConnectedGamepads;
+        PlayerCount = ManualPlayerCount;
+        // PlayerCount = GameManager.ConnectedGamepads;
 
         Cursor.visible = false;
 
