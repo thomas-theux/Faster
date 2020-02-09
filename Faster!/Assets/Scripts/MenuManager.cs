@@ -34,6 +34,7 @@ public class MenuManager : MonoBehaviour {
             // Quit to main menu
             if (quitButton) {
                 GameManager.GameStarted = false;
+                GameManager.PlayerLevelArr.Clear();
                 SceneManager.LoadScene("1 Main Menu");
             }
 
