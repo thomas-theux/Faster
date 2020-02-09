@@ -3,8 +3,10 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AudioManager
     - BulbManager
+    - GameInitializer
     - GameManager
     - GamepadManager
+    - MenuManager
     - PlayerInstanceSpawner
     - PlayerSheet
     - Rewired.InputManager
@@ -30,6 +32,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TMP_SubMeshUI
     - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
@@ -46,7 +49,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
   sceneClasses:
-    Assets/Scenes/LightMeUp.unity:
+    Assets/Scenes/0 Game Initializer.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -63,11 +66,66 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 83
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 109
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11646}
+    - Class: 114
+      Script: {instanceID: 11650}
+    - Class: 114
+      Script: {instanceID: 11652}
+    - Class: 114
+      Script: {instanceID: 11654}
+    - Class: 114
+      Script: {instanceID: 11656}
+    - Class: 114
+      Script: {instanceID: 11674}
+    - Class: 114
+      Script: {instanceID: 11676}
+    - Class: 114
+      Script: {instanceID: 11950}
+    - Class: 114
+      Script: {instanceID: 12594}
+    - Class: 114
+      Script: {instanceID: 12608}
+    - Class: 114
+      Script: {instanceID: 12766}
+    - Class: 114
+      Script: {instanceID: 12866}
+    - Class: 114
+      Script: {instanceID: 13060}
+    - Class: 114
+      Script: {instanceID: 30744}
+    - Class: 114
+      Script: {instanceID: 31972}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    Assets/Scenes/1 Main Menu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11192}
@@ -88,36 +146,93 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11676}
     - Class: 114
-      Script: {instanceID: 11950}
+      Script: {instanceID: 11734}
+    - Class: 114
+      Script: {instanceID: 12594}
+    - Class: 114
+      Script: {instanceID: 12766}
+    - Class: 114
+      Script: {instanceID: 12806}
+    - Class: 114
+      Script: {instanceID: 12866}
+    - Class: 114
+      Script: {instanceID: 12876}
+    - Class: 114
+      Script: {instanceID: 30744}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/2 Light Me Up.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11192}
+    - Class: 114
+      Script: {instanceID: 11412}
+    - Class: 114
+      Script: {instanceID: 11646}
+    - Class: 114
+      Script: {instanceID: 11650}
+    - Class: 114
+      Script: {instanceID: 11652}
+    - Class: 114
+      Script: {instanceID: 11654}
+    - Class: 114
+      Script: {instanceID: 11656}
+    - Class: 114
+      Script: {instanceID: 11674}
+    - Class: 114
+      Script: {instanceID: 11676}
     - Class: 114
       Script: {instanceID: 11982}
     - Class: 114
       Script: {instanceID: 12028}
     - Class: 114
-      Script: {instanceID: 12458}
+      Script: {instanceID: 12156}
     - Class: 114
-      Script: {instanceID: 12592}
+      Script: {instanceID: 12460}
     - Class: 114
-      Script: {instanceID: 12606}
+      Script: {instanceID: 12594}
     - Class: 114
-      Script: {instanceID: 12764}
+      Script: {instanceID: 12806}
     - Class: 114
-      Script: {instanceID: 12804}
+      Script: {instanceID: 12862}
     - Class: 114
-      Script: {instanceID: 12860}
+      Script: {instanceID: 12866}
     - Class: 114
-      Script: {instanceID: 12864}
+      Script: {instanceID: 12876}
     - Class: 114
-      Script: {instanceID: 12874}
-    - Class: 114
-      Script: {instanceID: 12918}
-    - Class: 114
-      Script: {instanceID: 13058}
-    - Class: 114
-      Script: {instanceID: 16648}
+      Script: {instanceID: 12920}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -552,7 +667,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 58e9d95d16599f2b89fb4e7a71c3ac36
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -604,6 +719,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: 377495ddc0e997d2338b961279689c09
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BulbManager
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -942,11 +1063,19 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: dde40ab5f1eaad8262536326d52f1b8c
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: BulbManager
+    className: MenuManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameInitializer
   platform: 2
   scenePathNames:
-  - Assets/Scenes/LightMeUp.unity
-  playerPath: /Users/thomas_ge/Desktop/Faster/Faster!.app
+  - Assets/Scenes/0 Game Initializer.unity
+  - Assets/Scenes/1 Main Menu.unity
+  - Assets/Scenes/2 Light Me Up.unity
+  playerPath: /Users/thomas_ge/Desktop/Faster/faster v0.3.0.app

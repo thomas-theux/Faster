@@ -288,7 +288,6 @@ GameObject:
   m_Component:
   - component: {fileID: 172275437}
   - component: {fileID: 172275436}
-  - component: {fileID: 172275435}
   - component: {fileID: 172275434}
   - component: {fileID: 172275438}
   m_Layer: 0
@@ -315,18 +314,6 @@ MonoBehaviour:
   PlayerBulbsContainer: {fileID: 1733134613}
   PlayerBulb: {fileID: 2518032192623436591, guid: 91bcdbf98c2f64f659516d663aadd77f,
     type: 3}
---- !u!114 &172275435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172275433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7bcf89b5c1524c62a6b319dc31e48c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &172275436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +460,7 @@ PrefabInstance:
     - target: {fileID: 7770247870455795089, guid: 5d3907488659147b9abd761b5d775d68,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7770247870455795091, guid: 5d3907488659147b9abd761b5d775d68,
         type: 3}

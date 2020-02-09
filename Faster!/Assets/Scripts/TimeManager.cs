@@ -66,21 +66,21 @@ public class TimeManager : MonoBehaviour {
             }
         }
 
-        // Reset everything
-        if (GameManager.ReadyToReset) {
-            if (ReInput.players.GetPlayer(0).GetButtonDown("Restart")) {
+        // // Reset everything
+        // if (GameManager.ReadyToReset) {
+        //     if (ReInput.players.GetPlayer(0).GetButtonDown("Restart")) {
 
-                // Check if the game is over due to a player reaching the max level
-                if (GameManager.GameOver) {
-                    // Game IS over
-                    print("game over");
-                } else {
-                    // Game is NOT over
-                    AudioManager.instance.Play("Restart");
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                }
-            }
-        }
+        //         // Check if the game is over due to a player reaching the max level
+        //         if (GameManager.GameOver) {
+        //             // Game IS over
+        //             print("game over");
+        //         } else {
+        //             // Game is NOT over
+        //             AudioManager.instance.Play("Restart");
+        //             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //         }
+        //     }
+        // }
     }
 
 

@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    private GamepadManager gamepadManagerScript;
+    // private GamepadManager gamepadManagerScript;
     private PlayerInstanceSpawner playerInstanceSpawnerScript;
     private TimeManager timeManagerScript;
+
+    public static bool GameStarted = false;
 
     public static int PlayerCount = 0;
     public static int ConnectedGamepads = 0;
@@ -30,13 +32,13 @@ public class GameManager : MonoBehaviour {
     public static List<Sprite> BadgeImages = new List<Sprite>();
 
     // DEV STUFF
-    public int ManualPlayerCount = 0;
+    // public int ManualPlayerCount = 0;
 
 
     private void Awake() {
         // DEV STUFF
-        ConnectedGamepads = ManualPlayerCount;
-        PlayerCount = ManualPlayerCount;
+        // ConnectedGamepads = ManualPlayerCount;
+        PlayerCount = GameManager.ConnectedGamepads;
 
         Cursor.visible = false;
 
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour {
             }
         }
         
-        gamepadManagerScript = GetComponent<GamepadManager>();
+        // gamepadManagerScript = GetComponent<GamepadManager>();
         playerInstanceSpawnerScript = GetComponent<PlayerInstanceSpawner>();
         timeManagerScript = GetComponent<TimeManager>();
 
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour {
 
 
     private void InitializeGame() {
-        gamepadManagerScript.InitializeGamepads();
+        // gamepadManagerScript.InitializeGamepads();
         playerInstanceSpawnerScript.SpawnPlayerInstance();
         timeManagerScript.InitializeLightTimer();
     }
