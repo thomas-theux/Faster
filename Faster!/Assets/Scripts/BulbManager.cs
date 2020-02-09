@@ -8,6 +8,7 @@ public class BulbManager : MonoBehaviour {
     public GameObject PlayerParticles;
     public GameObject TimePopUp;
     public GameObject PopUpTime;
+    public GameObject PlayerBadge;
     public GameObject ScoreText;
 
 }

@@ -33,7 +33,8 @@ public class TimeManager : MonoBehaviour {
 
         for (int i = 0; i < GameManager.PlayerCount; i++) {
             timesArr.Add(0);
-            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerScoreArr[i] + "";
+            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[i] + "";
+            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().sprite = GameManager.BadgeImages[GameManager.PlayerLevelArr[i]];
         }
 
         // Display best time ever
@@ -68,8 +69,16 @@ public class TimeManager : MonoBehaviour {
         // Reset everything
         if (GameManager.ReadyToReset) {
             if (ReInput.players.GetPlayer(0).GetButtonDown("Restart")) {
-                AudioManager.instance.Play("Restart");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+                // Check if the game is over due to a player reaching the max level
+                if (GameManager.GameOver) {
+                    // Game IS over
+                    print("game over");
+                } else {
+                    // Game is NOT over
+                    AudioManager.instance.Play("Restart");
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
             }
         }
     }
@@ -178,8 +187,22 @@ public class TimeManager : MonoBehaviour {
             BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
         }
 
-        GameManager.PlayerScoreArr[findWinnerIndex]++;
-        GameManager.PlayerLightsArr[findWinnerIndex].GetComponent<BulbManager>().ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerScoreArr[findWinnerIndex] + "";
+        BulbManager bulbManagerScript = GameManager.PlayerLightsArr[findWinnerIndex].GetComponent<BulbManager>();
+
+        // Add one level and display the current level
+        GameManager.PlayerLevelArr[findWinnerIndex]++;
+        bulbManagerScript.ScoreText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[findWinnerIndex] + "";
+
+        // Display new badge/level
+        bulbManagerScript.PlayerBadge.GetComponent<Image>().sprite = GameManager.BadgeImages[GameManager.PlayerLevelArr[findWinnerIndex]];
+
+        // print("Lvl " + GameManager.PlayerLevelArr[findWinnerIndex] + "/" + GameManager.LevelMax - 1);
+
+        // Check if the game is over due to a player reaching the max level
+        if (GameManager.PlayerLevelArr[findWinnerIndex] == GameManager.LevelMax) {
+            GameManager.GameOver = true;
+        }
+
 
         if (!MSText.activeSelf) {
             MSText.SetActive(true);
