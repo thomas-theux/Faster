@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 
     public static int PlayerCount = 0;
     public static int ConnectedGamepads = 0;
-    public static int PlayerMax = 4;
+    public static int PlayerMax = 7;
 
     public static int LevelMax = 0;
 
