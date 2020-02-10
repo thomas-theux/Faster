@@ -21,7 +21,10 @@ public class TimeManager : MonoBehaviour {
     public float minDelay = 1.0f;
     public float maxDelay = 10.0f;
 
-    private float popUpDelayTime = 2.5f;
+    private float winnerParticleDelay = 0.5f;
+    private float increaseLevelBarDelay = 0.0f;
+    private float displayLevelDelay = 1.1f;
+    private float popUpDelay = 2.0f;
 
     private float lightOnTime = 0;
     private bool ShowPopUps = false;
@@ -87,7 +90,8 @@ public class TimeManager : MonoBehaviour {
 			float smoothedFillAMount = Mathf.Lerp(bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount, desiredFillAmount, smoothSpeed * Time.deltaTime);
 		    bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount = smoothedFillAMount;
 
-            if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount - (desiredFillAmount / 50)) {
+            // if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount - (desiredFillAmount / 50)) {
+            if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount) {
                 increaseLevel = false;
             }
         }
@@ -224,20 +228,21 @@ public class TimeManager : MonoBehaviour {
 
 
     private IEnumerator DelayThenWinnerParticle() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(winnerParticleDelay);
         WinnerParticleEffect();
     }
 
 
     // Instantiate particle effect for winner
     private void WinnerParticleEffect() {
+        AudioManager.instance.Play("WinnerSound");
         bulbManagerScriptWinner.WinnerParticles.SetActive(true);
         StartCoroutine(DelayThenIncreaseLevelBar());
     }
 
 
     private IEnumerator DelayThenIncreaseLevelBar() {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(increaseLevelBarDelay);
         IncreaseLevelBar();
     }
 
@@ -245,19 +250,23 @@ public class TimeManager : MonoBehaviour {
     // Increase fill amount of level bar
     private void IncreaseLevelBar() {
         bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().color = ColorManager.KeyPurple;
+        // AudioManager.instance.Play("IncreaseLevel");
         increaseLevel = true;
 
         StartCoroutine(DelayThenDisplayNewLevel());
     }
 
     private IEnumerator DelayThenDisplayNewLevel() {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(displayLevelDelay);
         DisplayNewLevel();
     }
 
 
     // Add one level, display the current level, and color
     private void DisplayNewLevel() {
+        // AudioManager.instance.Stop("IncreaseLevel");
+        AudioManager.instance.Play("NextLevelSound");
+
         bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[findWinnerIndex] + "";
         bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().color = ColorManager.KeyPurple;
 
@@ -276,7 +285,7 @@ public class TimeManager : MonoBehaviour {
 
 
     private IEnumerator ContinueDelay() {
-        yield return new WaitForSeconds(popUpDelayTime);
+        yield return new WaitForSeconds(popUpDelay);
         MenuManager.PlayNextRound();
     }
 

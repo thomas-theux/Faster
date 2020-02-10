@@ -12,11 +12,6 @@ public class MenuManager : MonoBehaviour {
     private bool restartButton = false;
 
 
-    private void Awake() {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-
     private void Update() {
         // Get input from player one
         GetInput();
@@ -25,6 +20,7 @@ public class MenuManager : MonoBehaviour {
 
             // Start game
             if (actionButton) {
+                AudioManager.instance.Play("ButtonPress");
                 GameManager.GameStarted = true;
                 SceneManager.LoadScene("2 Light Me Up");
             }
