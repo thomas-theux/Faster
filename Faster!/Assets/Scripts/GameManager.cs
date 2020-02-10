@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
     public static int PlayerDoneCount = 0;
     public static bool ReadyToReset = false;
 
-    public static bool InitializedScoreArr = false;
+    // public static bool InitializedScoreArr = false;
 
     public static bool GameOver = false;
 
@@ -33,21 +33,18 @@ public class GameManager : MonoBehaviour {
 
     // DEV STUFF
     public int ManualPlayerCount = 0;
+    public int ManualLevelMax = 0;
 
 
     private void Awake() {
         // DEV STUFF
-        PlayerCount = ManualPlayerCount;
         // PlayerCount = GameManager.ConnectedGamepads;
+        PlayerCount = ManualPlayerCount;
+        LevelMax = ManualLevelMax;
 
-        Cursor.visible = false;
-
-        if (!InitializedScoreArr) {
-            InitializedScoreArr = true;
-            for (int i = 0; i < PlayerCount; i++) {
-                // PlayerScoreArr.Add(0);
-                PlayerLevelArr.Add(0);
-            }
+        for (int i = 0; i < PlayerCount; i++) {
+            // PlayerScoreArr.Add(0);
+            PlayerLevelArr.Add(0);
         }
         
         // gamepadManagerScript = GetComponent<GamepadManager>();
@@ -55,8 +52,8 @@ public class GameManager : MonoBehaviour {
         timeManagerScript = GetComponent<TimeManager>();
 
         // Load all badge images into a list and set level maximum
-        BadgeImages = new List<Sprite>(Resources.LoadAll<Sprite>("BadgeImages"));
-        LevelMax = BadgeImages.Count - 1;
+        // BadgeImages = new List<Sprite>(Resources.LoadAll<Sprite>("BadgeImages"));
+        // LevelMax = BadgeImages.Count - 1;
 
         InitializeGame();
     }

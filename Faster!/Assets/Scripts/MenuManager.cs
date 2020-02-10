@@ -34,6 +34,7 @@ public class MenuManager : MonoBehaviour {
             // Quit to main menu
             if (quitButton) {
                 GameManager.GameStarted = false;
+                // GameManager.InitializedScoreArr = false;
                 GameManager.PlayerLevelArr.Clear();
                 SceneManager.LoadScene("1 Main Menu");
             }
@@ -43,18 +44,20 @@ public class MenuManager : MonoBehaviour {
         // Reset everything
         if (GameManager.ReadyToReset) {
             if (restartButton) {
-
-                // Check if the game is over due to a player reaching the max level
-                if (GameManager.GameOver) {
-                    // Game IS over
-                    print("game over");
-                } else {
-                    // Game is NOT over
-                    AudioManager.instance.Play("Restart");
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                }
-
+                PlayNextRound();
             }
+        }
+    }
+
+
+    public static void PlayNextRound() {
+        // Check if the game is over due to a player reaching the max level
+        if (GameManager.GameOver) {
+            // Game IS over
+        } else {
+            // Game is NOT over
+            AudioManager.instance.Play("Restart");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

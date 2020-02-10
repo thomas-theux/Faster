@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5311310632172383400}
   - component: {fileID: 6934165505619661844}
   - component: {fileID: 427176116773849299}
+  - component: {fileID: 6583519397577671330}
   m_Layer: 5
   m_Name: BadgeBackground
   m_TagString: Untagged
@@ -73,6 +74,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &6583519397577671330
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42854865765882825}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &324153282025894437
 GameObject:
   m_ObjectHideFlags: 0
@@ -5418,6 +5440,7 @@ GameObject:
   - component: {fileID: 8143205291414151942}
   - component: {fileID: 3333499335306833325}
   - component: {fileID: 4127221611478145101}
+  - component: {fileID: 6616222533942646150}
   m_Layer: 5
   m_Name: PlayerBadge
   m_TagString: Untagged
@@ -5482,6 +5505,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &6616222533942646150
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5932209680976142016}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &6391980619623684758
 GameObject:
   m_ObjectHideFlags: 0
