@@ -64,9 +64,9 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: LightOn
-    clip: {fileID: 8300000, guid: b61e53d802715448c8b15f57ed6c9b72, type: 3}
+    clip: {fileID: 8300000, guid: c91c1e255263b4c32b18fa702c052bfd, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 1.5
     loop: 0
     source: {fileID: 0}
   - name: ButtonPress
@@ -82,8 +82,8 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Restart
-    clip: {fileID: 8300000, guid: 3656094489983407fb4d09e017b9b43b, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 6718979f86b4b41b4aa6d740faedfc5e, type: 3}
+    volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -109,5 +109,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3233c6d4d26f74ffea20bf791b2240a3, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ActivateLight
+    clip: {fileID: 8300000, guid: ecf271196cd2a4c1794fa80b5cc16fdf, type: 3}
+    volume: 0.2
+    pitch: 2
     loop: 0
     source: {fileID: 0}

@@ -9,7 +9,8 @@ using Rewired;
 public class TimeManager : MonoBehaviour {
 
     public GameObject lightBulbGO;
-    public TMP_Text BestTimeEver;
+    public Sprite LevelUpBadge;
+    // public TMP_Text BestTimeEver;
     // public GameObject MSText;
 
     private BulbManager bulbManagerScriptWinner;
@@ -30,8 +31,10 @@ public class TimeManager : MonoBehaviour {
     private bool ShowPopUps = false;
 
     private bool timerIsRunning = false;
-    private bool increaseLevel = false;
-    public float smoothSpeed = 3.0f;
+    private bool increasingLevelBar = false;
+    private bool increasingLevelText = false;
+    public float levelBarSmoothSpeed = 3.0f;
+    public float levelTextSmoothSpeed = 6.0f;
 
     public List<float> timesArr = new List<float>();
 
@@ -45,22 +48,22 @@ public class TimeManager : MonoBehaviour {
 
             // Revert texts back to basic and display proper badge
             GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[i] + "";
+            // GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().fontSize = 32;
             GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().color = ColorManager.KeyWhite;
 
-            // GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().sprite = GameManager.BadgeImages[GameManager.PlayerLevelArr[i]];
             float newFillAmount = GameManager.PlayerLevelArr[i] / (float)GameManager.LevelMax;
             GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().fillAmount = newFillAmount;
             GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().color = ColorManager.KeyWhite;
         }
 
         // Display best time ever
-        if (GameManager.BestTimeEver < 999999) {
-            BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
+        // if (GameManager.BestTimeEver < 999999) {
+        //     BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
 
-            // if (!MSText.activeSelf) {
-            //     MSText.SetActive(true);
-            // }
-        }
+        //     if (!MSText.activeSelf) {
+        //         MSText.SetActive(true);
+        //     }
+        // }
     }
 
 
@@ -85,15 +88,35 @@ public class TimeManager : MonoBehaviour {
 
 
     private void FixedUpdate() {
-        if (increaseLevel) {
-            float desiredFillAmount = GameManager.PlayerLevelArr[findWinnerIndex] / (float)GameManager.LevelMax;
-			float smoothedFillAMount = Mathf.Lerp(bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount, desiredFillAmount, smoothSpeed * Time.deltaTime);
-		    bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount = smoothedFillAMount;
+        if (increasingLevelBar) {
+            SmoothedLevelBarIncrease();
+        }
 
-            // if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount - (desiredFillAmount / 50)) {
-            if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount) {
-                increaseLevel = false;
-            }
+        if (increasingLevelText) {
+            SmoothedLevelTextIncrease();
+        }
+    }
+
+
+    private void SmoothedLevelBarIncrease() {
+        float desiredFillAmount = GameManager.PlayerLevelArr[findWinnerIndex] / (float)GameManager.LevelMax;
+        float smoothedFillAMount = Mathf.Lerp(bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount, desiredFillAmount, levelBarSmoothSpeed * Time.deltaTime);
+        bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount = smoothedFillAMount;
+
+        // if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount - (desiredFillAmount / 50)) {
+        if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount) {
+            increasingLevelBar = false;
+        }
+    }
+
+
+    private void SmoothedLevelTextIncrease() {
+        float desiredFontSize = 48;
+        float smoothedFontSize = Mathf.Lerp(bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().fontSize, desiredFontSize, levelTextSmoothSpeed * Time.deltaTime);
+        bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().fontSize = smoothedFontSize;
+
+        if (bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().fontSize >= desiredFontSize) {
+            increasingLevelText = false;
         }
     }
 
@@ -202,7 +225,7 @@ public class TimeManager : MonoBehaviour {
         // Find best time ever
         if (bestTime < GameManager.BestTimeEver) {
             GameManager.BestTimeEver = bestTime;
-            BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
+            // BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
         }
         
         bulbManagerScriptWinner = GameManager.PlayerLightsArr[findWinnerIndex].GetComponent<BulbManager>();
@@ -249,9 +272,10 @@ public class TimeManager : MonoBehaviour {
 
     // Increase fill amount of level bar
     private void IncreaseLevelBar() {
-        bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().color = ColorManager.KeyPurple;
+        bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().sprite = LevelUpBadge;
+        // bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().color = ColorManager.KeyPurple;
         // AudioManager.instance.Play("IncreaseLevel");
-        increaseLevel = true;
+        increasingLevelBar = true;
 
         StartCoroutine(DelayThenDisplayNewLevel());
     }
@@ -268,6 +292,8 @@ public class TimeManager : MonoBehaviour {
         AudioManager.instance.Play("NextLevelSound");
 
         bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[findWinnerIndex] + "";
+        increasingLevelText = true;
+        // bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().fontSize = 48;
         bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().color = ColorManager.KeyPurple;
 
         CheckForGameOver();

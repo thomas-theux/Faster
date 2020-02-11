@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour {
     // REWIRED
     private bool actionButton = false;
     private bool quitButton = false;
-    private bool restartButton = false;
+    // private bool restartButton = false;
 
 
     private void Update() {
@@ -38,11 +38,11 @@ public class MenuManager : MonoBehaviour {
         }
 
         // Reset everything
-        if (GameManager.ReadyToReset) {
-            if (restartButton) {
-                PlayNextRound();
-            }
-        }
+        // if (GameManager.ReadyToReset) {
+        //     if (restartButton) {
+        //         PlayNextRound();
+        //     }
+        // }
     }
 
 
@@ -61,7 +61,7 @@ public class MenuManager : MonoBehaviour {
     private void GetInput() {
         actionButton = ReInput.players.GetPlayer(0).GetButtonDown("Action");
         quitButton = ReInput.players.GetPlayer(0).GetButtonDown("Quit");
-        restartButton = ReInput.players.GetPlayer(0).GetButtonDown("Restart");
+        // restartButton = ReInput.players.GetPlayer(0).GetButtonDown("Restart");
     }
 
 }

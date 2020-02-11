@@ -55,7 +55,7 @@ public class PlayerSheet : MonoBehaviour {
 
                 if (TimeManager.LightIsOn) {
                     // Player presses the button properly (not too early)
-                    AudioManager.instance.Play("ButtonPress");
+                    AudioManager.instance.Play("ActivateLight");
 
                     timeManagerScript.GetTime(PlayerID, true);
 
