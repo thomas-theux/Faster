@@ -30,8 +30,9 @@ public class MenuManager : MonoBehaviour {
             // Quit to main menu
             if (quitButton) {
                 GameManager.GameStarted = false;
-                // GameManager.InitializedScoreArr = false;
                 GameManager.PlayerLevelArr.Clear();
+                GameManager.ResetPlayerCounts();
+                
                 SceneManager.LoadScene("1 Main Menu");
             }
 

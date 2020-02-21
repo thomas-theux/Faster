@@ -15,12 +15,13 @@ public class GameManager : MonoBehaviour {
     public static int ConnectedGamepads = 0;
     public static int PlayerMax = 7;
 
+    public static int ManualPlayerCountDEF = 2;
+    public static int ManualPlayerCount = 2;
+
     public static int LevelMax = 0;
 
     public static int PlayerDoneCount = 0;
     public static bool ReadyToReset = false;
-
-    // public static bool InitializedScoreArr = false;
 
     public static bool GameOver = false;
 
@@ -32,15 +33,23 @@ public class GameManager : MonoBehaviour {
     public static List<Sprite> BadgeImages = new List<Sprite>();
 
     // DEV STUFF
-    public int ManualPlayerCount = 0;
-    public int ManualLevelMax = 0;
+    // public int ManualPlayerCount = 0;
+    // public int ManualLevelMax = 0;
 
 
     private void Awake() {
+        //////////////////////////////////////////////////
         // DEV STUFF
-        // PlayerCount = GameManager.ConnectedGamepads;
-        PlayerCount = ManualPlayerCount;
-        LevelMax = ManualLevelMax;
+        // PlayerCount = ManualPlayerCount;
+        // LevelMax = ManualLevelMax;
+        //////////////////////////////////////////////////
+        PlayerCount = GameManager.ConnectedGamepads;
+        LevelMax = 10;
+        //////////////////////////////////////////////////
+
+        if (PlayerCount < 1) {
+            PlayerCount = ManualPlayerCount;
+        }
 
         for (int i = 0; i < PlayerCount; i++) {
             // PlayerScoreArr.Add(0);
@@ -76,6 +85,12 @@ public class GameManager : MonoBehaviour {
         ReadyToReset = false;
         PlayerLightsArr.Clear();
         GameOver = false;
+    }
+
+
+    public static void ResetPlayerCounts() {
+        PlayerCount = 0;
+        // ManualPlayerCount = ManualPlayerCountDEF;
     }
 
 }
