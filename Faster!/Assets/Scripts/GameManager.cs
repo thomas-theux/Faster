@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
         // LevelMax = ManualLevelMax;
         //////////////////////////////////////////////////
         PlayerCount = GameManager.ConnectedGamepads;
-        LevelMax = 10;
+        LevelMax = 4;
         //////////////////////////////////////////////////
 
         if (PlayerCount < 1) {

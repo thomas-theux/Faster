@@ -327,8 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c33275567e21455bb0cc67cb9df9160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ManualPlayerCount: 2
-  ManualLevelMax: 3
 --- !u!4 &172275437
 Transform:
   m_ObjectHideFlags: 0
@@ -359,7 +357,8 @@ MonoBehaviour:
   LevelUpBadge: {fileID: 21300000, guid: 4c15c73dd550e49888a934a2453d45d3, type: 3}
   minDelay: 0.5
   maxDelay: 5
-  smoothSpeed: 3
+  levelBarSmoothSpeed: 3
+  levelTextSmoothSpeed: 6
   timesArr: []
 --- !u!1 &301821743
 GameObject:

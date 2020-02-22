@@ -153,7 +153,7 @@ public class TimeManager : MonoBehaviour {
 
             // Calculate to milliseconds
             newTime *= 1000;
-            newTime = Mathf.Round(newTime * 100f) / 100f;
+            // newTime = Mathf.Round(newTime * 1000000f) / 1000000f;
             // newTime *= 1000;
             // newTime = Mathf.Round(newTime);
         }
@@ -211,27 +211,33 @@ public class TimeManager : MonoBehaviour {
         // Reset index of winner
         findWinnerIndex = -1;
 
-        float bestTime = 9999999;
+        // Check if players have the same time
+        // ONLY FOR PLAYER ONE AND TWO
+        if (timesArr[0] == timesArr[1]) {
+            StartCoroutine(ContinueDelay());
+        } else {
+            float bestTime = 9999999;
 
-        for (int i = 0; i < GameManager.PlayerCount; i++) {
-            if (timesArr[i] < bestTime) {
-                bestTime = timesArr[i];
+            for (int i = 0; i < GameManager.PlayerCount; i++) {
+                if (timesArr[i] < bestTime) {
+                    bestTime = timesArr[i];
+                }
             }
+
+            findWinnerIndex = timesArr.IndexOf(bestTime);
+            GameManager.PlayerLevelArr[findWinnerIndex]++;
+
+            // Find best time ever
+            if (bestTime < GameManager.BestTimeEver) {
+                GameManager.BestTimeEver = bestTime;
+                // BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
+            }
+            
+            bulbManagerScriptWinner = GameManager.PlayerLightsArr[findWinnerIndex].GetComponent<BulbManager>();
+
+
+            StartCoroutine(DelayThenWinnerParticle());
         }
-
-        findWinnerIndex = timesArr.IndexOf(bestTime);
-        GameManager.PlayerLevelArr[findWinnerIndex]++;
-
-        // Find best time ever
-        if (bestTime < GameManager.BestTimeEver) {
-            GameManager.BestTimeEver = bestTime;
-            // BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
-        }
-        
-        bulbManagerScriptWinner = GameManager.PlayerLightsArr[findWinnerIndex].GetComponent<BulbManager>();
-
-
-        StartCoroutine(DelayThenWinnerParticle());
 
         // WinnerParticleEffect();
 
