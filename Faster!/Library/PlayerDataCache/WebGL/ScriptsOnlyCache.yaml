@@ -851,7 +851,7 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 9a4791b73c12fad51acb98b77155d34c
+      Hash: db85c0eccb277668ac27646bcd269d38
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TimeManager
@@ -875,7 +875,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: f8304b77dfc8bce8da0fe3b729363028
+      Hash: ea3785fe54d2d302fd5c9416d7f8f6f3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerSheet
@@ -1059,9 +1059,15 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DEVStopWatch
   platform: 20
   scenePathNames:
   - Assets/Scenes/0 Game Initializer.unity
   - Assets/Scenes/1 Main Menu.unity
   - Assets/Scenes/2 Light Me Up.unity
-  playerPath: /Users/thomas_ge/Desktop/Faster/faster v0.3.1
+  playerPath: /Users/thomas_ge/Desktop/faster

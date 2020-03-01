@@ -7,6 +7,7 @@ public class GameInitializer : MonoBehaviour {
 
     private void Awake() {
         Cursor.visible = false;
+        Application.targetFrameRate = 30;
         
         SceneManager.LoadScene("1 Main Menu");
     }

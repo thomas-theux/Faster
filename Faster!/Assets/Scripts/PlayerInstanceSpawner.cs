@@ -22,26 +22,29 @@ public class PlayerInstanceSpawner : MonoBehaviour {
 
         for (int i = 0; i < GameManager.PlayerCount; i++) {
             // Build basic player instance
-            GameObject newPlayerInstance = Instantiate(PlayerInstance);
-            newPlayerInstance.name = "Player " + i;
-            newPlayerInstance.GetComponent<PlayerSheet>().PlayerID = i;
+            // GameObject newPlayerInstance = Instantiate(PlayerInstance);
+            // newPlayerInstance.name = "Player " + i;
+            // newPlayerInstance.GetComponent<PlayerSheet>().PlayerID = i;
 
             // Build and position player bulbs
             float newPositionX = bulbDistance * i;
+
             GameObject newPlayerBulb = Instantiate(PlayerBulb, PlayerBulbsContainer.transform, false);
-            newPlayerBulb.name = "PlayerBulb " + i;
+
+            newPlayerBulb.name = "Player " + i;
+            newPlayerBulb.GetComponent<PlayerSheet>().PlayerID = i;
+
             newPlayerBulb.transform.localPosition = new Vector2(
                 newPlayerBulb.transform.localPosition.x + newPositionX,
                 newPlayerBulb.transform.localPosition.y
             );
 
             // Attach player light to player
-            newPlayerInstance.GetComponent<PlayerSheet>().PlayerBulbGO = newPlayerBulb.gameObject;
+            // newPlayerInstance.GetComponent<PlayerSheet>().PlayerBulbGO = newPlayerBulb.gameObject;
+            newPlayerBulb.GetComponent<PlayerSheet>().PlayerBulbGO = newPlayerBulb.gameObject;
 
-            GameManager.PlayerLightsArr.Add(newPlayerBulb);
+            GameManager.PlayerInstances.Add(newPlayerBulb);
         }
-
-        // print(GameManager.PlayerScoreArr.Count);
     }
 
 }

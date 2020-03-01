@@ -10,8 +10,6 @@ public class TimeManager : MonoBehaviour {
 
     public GameObject lightBulbGO;
     public Sprite LevelUpBadge;
-    // public TMP_Text BestTimeEver;
-    // public GameObject MSText;
 
     private BulbManager bulbManagerScriptWinner;
     private int findWinnerIndex;
@@ -27,8 +25,8 @@ public class TimeManager : MonoBehaviour {
     private float displayLevelDelay = 1.1f;
     private float popUpDelay = 2.0f;
 
-    private float lightOnTime = 0;
-    private bool ShowPopUps = false;
+    public static float LightIsOnTimer = 0;
+    public bool ShowPopUps = false;
 
     private bool timerIsRunning = false;
     private bool increasingLevelBar = false;
@@ -37,6 +35,7 @@ public class TimeManager : MonoBehaviour {
     public float levelTextSmoothSpeed = 6.0f;
 
     public List<float> timesArr = new List<float>();
+    public List<int> rankingArr = new List<int>();
 
 
     public void InitializeLightTimer() {
@@ -47,23 +46,14 @@ public class TimeManager : MonoBehaviour {
             timesArr.Add(0);
 
             // Revert texts back to basic and display proper badge
-            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[i] + "";
-            // GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().fontSize = 32;
-            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().color = ColorManager.KeyWhite;
+            GameManager.PlayerInstances[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[i] + "";
+            // GameManager.PlayerInstances[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().fontSize = 32;
+            GameManager.PlayerInstances[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().color = ColorManager.KeyWhite;
 
             float newFillAmount = GameManager.PlayerLevelArr[i] / (float)GameManager.LevelMax;
-            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().fillAmount = newFillAmount;
-            GameManager.PlayerLightsArr[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().color = ColorManager.KeyWhite;
+            GameManager.PlayerInstances[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().fillAmount = newFillAmount;
+            GameManager.PlayerInstances[i].GetComponent<BulbManager>().PlayerBadge.GetComponent<Image>().color = ColorManager.KeyWhite;
         }
-
-        // Display best time ever
-        // if (GameManager.BestTimeEver < 999999) {
-        //     BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
-
-        //     if (!MSText.activeSelf) {
-        //         MSText.SetActive(true);
-        //     }
-        // }
     }
 
 
@@ -75,9 +65,12 @@ public class TimeManager : MonoBehaviour {
 
         // Start counting the time when light is turned on
         if (LightIsOn) {
-            LightOnTime();
+            LightTimerRunning();
         }
+    }
 
+
+    public void AllPlayersDone() {
         // Show time popups
         if (GameManager.PlayerDoneCount == GameManager.PlayerCount) {
             if (!ShowPopUps) {
@@ -103,7 +96,6 @@ public class TimeManager : MonoBehaviour {
         float smoothedFillAMount = Mathf.Lerp(bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount, desiredFillAmount, levelBarSmoothSpeed * Time.deltaTime);
         bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount = smoothedFillAMount;
 
-        // if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount - (desiredFillAmount / 50)) {
         if (bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().fillAmount >= desiredFillAmount) {
             increasingLevelBar = false;
         }
@@ -135,46 +127,32 @@ public class TimeManager : MonoBehaviour {
             timerIsRunning = false;
             lightBulbGO.SetActive(true);
             lightBulbGO.GetComponent<Image>().color = ColorManager.KeyWhite;
+            // lightBulbGO.GetComponent<Image>().color = ColorManager.KeyGreen;
             LightIsOn = true;
         }
     }
 
 
-    private void LightOnTime() {
-        lightOnTime += Time.deltaTime;
+    private void LightTimerRunning() {
+        LightIsOnTimer += Time.deltaTime;
     }
 
 
-    public void GetTime(int playerID, bool rightOnTime) {
-        float newTime = 999999;
+    // public void GetTime(int playerID, bool rightOnTime) {
+    //     float newTime = 999999;
 
-        if (rightOnTime) {
-            newTime = lightOnTime;
+    //     if (rightOnTime) {
+    //         newTime = LightIsOnTimer;
 
-            // Calculate to milliseconds
-            newTime *= 1000;
-            // newTime = Mathf.Round(newTime * 1000000f) / 1000000f;
-            // newTime *= 1000;
-            // newTime = Mathf.Round(newTime);
-        }
+    //         // Calculate milliseconds
+    //         newTime *= 1000;
+    //     }
 
-        // timerDict[playerID]["Player ID"] = playerID;
-        // timerDict[playerID]["Player Time"] = newTime;
-        timesArr[playerID] = newTime;
-
-        // Hashtable dictEntry = new Hashtable();
-
-        // dictEntry["Player ID"] = playerID;
-        // dictEntry["Player Time"] = newTime;
-
-        // timerDict.Add(dictEntry);
-
-        // print((float)timerDict[playerID]["Player Time"]);
-        // print("Player " + playerID + ": " + newTime);
-    }
+    //     timesArr[playerID] = newTime;
+    // }
 
 
-    private IEnumerator ShowPopUpsDelay() {
+    public IEnumerator ShowPopUpsDelay() {
         ShowPopUps = true;
 
         yield return new WaitForSeconds(1.0f);
@@ -188,16 +166,16 @@ public class TimeManager : MonoBehaviour {
         AudioManager.instance.Play("PopUp");
 
         for (int i = 0; i < GameManager.PlayerCount; i++) {
-            BulbManager bulbManagerScript = GameManager.PlayerLightsArr[i].GetComponent<BulbManager>();
+            BulbManager bulbManagerScript = GameManager.PlayerInstances[i].GetComponent<BulbManager>();
 
             GameObject newPopUp = bulbManagerScript.TimePopUp;
             newPopUp.SetActive(true);
 
-            // float playerTime = (float)timerDict[i]["Player Time"];
-            float playerTime = timesArr[i];
+            // float playerTime = timesArr[i];
+            float playerTime = GameManager.PlayerInstances[i].GetComponent<PlayerSheet>().PlayerTime;
             
-            if (playerTime > 99999) {
-                bulbManagerScript.PopUpTime.GetComponent<TMP_Text>().text = "–";
+            if (playerTime < 0) {
+                bulbManagerScript.PopUpTime.GetComponent<TMP_Text>().text = "-";
             } else {
                 bulbManagerScript.PopUpTime.GetComponent<TMP_Text>().text = playerTime.ToString("F1");
             }
@@ -210,49 +188,83 @@ public class TimeManager : MonoBehaviour {
     private void FindWinner() {
         // Reset index of winner
         findWinnerIndex = -1;
+        bool foundWinner = false;
 
-        // Check if players have the same time
-        // ONLY FOR PLAYER ONE AND TWO
-        if (timesArr[0] == timesArr[1]) {
-            StartCoroutine(ContinueDelay());
-        } else {
-            float bestTime = 9999999;
+        List<float> playerTimes = new List<float>();
+        List<float> sortedTimes = new List<float>();
 
-            for (int i = 0; i < GameManager.PlayerCount; i++) {
-                if (timesArr[i] < bestTime) {
-                    bestTime = timesArr[i];
-                }
-            }
-
-            findWinnerIndex = timesArr.IndexOf(bestTime);
-            GameManager.PlayerLevelArr[findWinnerIndex]++;
-
-            // Find best time ever
-            if (bestTime < GameManager.BestTimeEver) {
-                GameManager.BestTimeEver = bestTime;
-                // BestTimeEver.text = GameManager.BestTimeEver.ToString("F1");
-            }
-            
-            bulbManagerScriptWinner = GameManager.PlayerLightsArr[findWinnerIndex].GetComponent<BulbManager>();
-
-
-            StartCoroutine(DelayThenWinnerParticle());
+        for (int i = 0; i < GameManager.PlayerCount; i++) {
+            // float newPlayerTime = GameManager.PlayerInstances[i].GetComponent<PlayerSheet>().Playertime;
+            float newPlayerTime = GameManager.PlayerInstances[i].GetComponent<PlayerSheet>().PlayerTime;
+            playerTimes.Add(newPlayerTime);
+            sortedTimes.Add(newPlayerTime);
         }
 
-        // WinnerParticleEffect();
+        sortedTimes.Sort();
 
-        // IncreaseLevelBar();
+        // Find best time and ID of player
+        for (int i = 0; i < GameManager.PlayerCount; i++) {
+            if (!foundWinner) {
+                if (sortedTimes[i] != -1) {
+                    if (i+1 < GameManager.PlayerCount) {
+                        if (sortedTimes[i] != sortedTimes[i+1]) {
+                            float bestTime = sortedTimes[i];
+                            findWinnerIndex = playerTimes.IndexOf(bestTime);
+                        }
+                        foundWinner = true;
+                    }
+                }
+            }
+        }
 
-        // DisplayNewLevel();
+        if (findWinnerIndex > -1) {
+            bulbManagerScriptWinner = GameManager.PlayerInstances[findWinnerIndex].GetComponent<BulbManager>();
+            GameManager.PlayerLevelArr[findWinnerIndex]++;
+
+            StartCoroutine(DelayThenWinnerParticle());
+        } else {
+            StartCoroutine(ContinueDelay());
+        }
 
 
-        // CheckForGameOver();
 
-        // if (!MSText.activeSelf) {
-        //     MSText.SetActive(true);
+
+
+
+
+
+
+
+
+        // // Check if players have the same time
+        // if (timesArr.Count >= 2 && rankingArr.Count >= 2 && timesArr[rankingArr[0]] == timesArr[rankingArr[1]]) {
+        //     print("skip");
+        //     StartCoroutine(ContinueDelay());
+        // } else {
+        //     float bestTime = 9999999;
+
+        //     for (int i = 0; i < GameManager.PlayerCount; i++) {
+        //         if (timesArr[i] < bestTime) {
+        //             bestTime = timesArr[i];
+        //         }
+        //     }
+
+        //     if (bestTime < 99999) {
+        //         findWinnerIndex = timesArr.IndexOf(bestTime);
+        //         GameManager.PlayerLevelArr[findWinnerIndex]++;
+
+        //         // Find best time ever
+        //         if (bestTime < GameManager.BestTimeEver) {
+        //             GameManager.BestTimeEver = bestTime;
+        //         }
+                
+        //         bulbManagerScriptWinner = GameManager.PlayerInstances[findWinnerIndex].GetComponent<BulbManager>();
+    
+        //         StartCoroutine(DelayThenWinnerParticle());
+        //     } else {
+        //         StartCoroutine(ContinueDelay());
+        //     }
         // }
-
-        // StartCoroutine(ContinueDelay());
     }
 
 
@@ -279,8 +291,6 @@ public class TimeManager : MonoBehaviour {
     // Increase fill amount of level bar
     private void IncreaseLevelBar() {
         bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().sprite = LevelUpBadge;
-        // bulbManagerScriptWinner.PlayerBadge.GetComponent<Image>().color = ColorManager.KeyPurple;
-        // AudioManager.instance.Play("IncreaseLevel");
         increasingLevelBar = true;
 
         StartCoroutine(DelayThenDisplayNewLevel());
@@ -299,7 +309,6 @@ public class TimeManager : MonoBehaviour {
 
         bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[findWinnerIndex] + "";
         increasingLevelText = true;
-        // bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().fontSize = 48;
         bulbManagerScriptWinner.LevelText.GetComponent<TMP_Text>().color = ColorManager.KeyPurple;
 
         CheckForGameOver();
@@ -330,10 +339,11 @@ public class TimeManager : MonoBehaviour {
     public void CleanUpLightTimer() {
         LightIsOn = false;
         delayTime = 0;
-        lightOnTime = 0;
+        LightIsOnTimer = 0;
         ShowPopUps = false;
         timerIsRunning = false;
         timesArr.Clear();
+        rankingArr.Clear();
     }
 
 }

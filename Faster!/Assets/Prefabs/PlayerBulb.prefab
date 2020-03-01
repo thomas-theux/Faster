@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 2518032192623436588}
   - component: {fileID: 2518032192623436594}
   - component: {fileID: 2518032192623436589}
+  - component: {fileID: 170437334201914503}
   - component: {fileID: 5378577358861258089}
   m_Layer: 5
   m_Name: PlayerBulb
@@ -328,6 +329,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &170437334201914503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518032192623436591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91facac2c614477f8ebcade610ec866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerID: 0
+  PlayerTime: -1
+  PressedButton: 0
+  PlayerBulbGO: {fileID: 0}
 --- !u!114 &5378577358861258089
 MonoBehaviour:
   m_ObjectHideFlags: 0

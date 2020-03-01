@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 
     public static bool GameOver = false;
 
-    public static List<GameObject> PlayerLightsArr = new List<GameObject>();
+    public static List<GameObject> PlayerInstances = new List<GameObject>();
     public static List<int> PlayerLevelArr = new List<int>();
 
     public static float BestTimeEver = 9999999;
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
         // LevelMax = ManualLevelMax;
         //////////////////////////////////////////////////
         PlayerCount = GameManager.ConnectedGamepads;
-        LevelMax = 4;
+        LevelMax = 10;
         //////////////////////////////////////////////////
 
         if (PlayerCount < 1) {
@@ -56,20 +56,14 @@ public class GameManager : MonoBehaviour {
             PlayerLevelArr.Add(0);
         }
         
-        // gamepadManagerScript = GetComponent<GamepadManager>();
         playerInstanceSpawnerScript = GetComponent<PlayerInstanceSpawner>();
         timeManagerScript = GetComponent<TimeManager>();
-
-        // Load all badge images into a list and set level maximum
-        // BadgeImages = new List<Sprite>(Resources.LoadAll<Sprite>("BadgeImages"));
-        // LevelMax = BadgeImages.Count - 1;
 
         InitializeGame();
     }
 
 
     private void InitializeGame() {
-        // gamepadManagerScript.InitializeGamepads();
         playerInstanceSpawnerScript.SpawnPlayerInstance();
         timeManagerScript.InitializeLightTimer();
     }
@@ -83,7 +77,7 @@ public class GameManager : MonoBehaviour {
     public void CleanUpGameManager() {
         PlayerDoneCount = 0;
         ReadyToReset = false;
-        PlayerLightsArr.Clear();
+        PlayerInstances.Clear();
         GameOver = false;
     }
 

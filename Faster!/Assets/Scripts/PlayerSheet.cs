@@ -11,12 +11,16 @@ public class PlayerSheet : MonoBehaviour {
     private BulbManager bulbManagerScript;
 
     public int PlayerID = 0;
+    // public int PlayerScore = 0;
+    public float PlayerTime = -1;
+    public bool PressedButton = false;
+
+    // public float PlayerTim = 22;
+
     private Player player;
 
     public GameObject PlayerBulbGO;
     private GameObject PlayerLightGO;
-
-    public bool pressedButton = false;
 
     // REWIRED
     private bool actionBtn = false;
@@ -29,7 +33,7 @@ public class PlayerSheet : MonoBehaviour {
 
 
     void Start() {
-        bulbManagerScript = GameManager.PlayerLightsArr[PlayerID].GetComponent<BulbManager>();
+        bulbManagerScript = GameManager.PlayerInstances[PlayerID].GetComponent<BulbManager>();
 
         player = ReInput.players.GetPlayer(PlayerID);
         PlayerLightGO = bulbManagerScript.PlayerLight;
@@ -49,18 +53,25 @@ public class PlayerSheet : MonoBehaviour {
 
     private void SetMyTime() {
         if (actionBtn) {
-            if (!pressedButton) {
-                pressedButton = true;
-                GameManager.PlayerDoneCount++;
+            if (!PressedButton) {
+                PressedButton = true;
 
                 if (TimeManager.LightIsOn) {
                     // Player presses the button properly (not too early)
                     AudioManager.instance.Play("ActivateLight");
 
-                    timeManagerScript.GetTime(PlayerID, true);
+                    // Add this players ID to the ranking array
+                    // DO WE NEED THAT?
+                    timeManagerScript.rankingArr.Add(PlayerID);
+
+                    // Get player time
+                    // timeManagerScript.GetTime(PlayerID, true);
+                    PlayerTime = TimeManager.LightIsOnTimer;
+                    PlayerTime *= 1000;
 
                     PlayerLightGO.SetActive(true);
                     
+                    // Set color of the player light and particles
                     PlayerLightGO.GetComponent<Image>().color = ColorManager.KeyWhite;
                     ParticleSystem.MainModule main = bulbManagerScript.PlayerParticles.GetComponent<ParticleSystem>().main;
                     main.startColor = ColorManager.ParticlesWhite;
@@ -68,7 +79,7 @@ public class PlayerSheet : MonoBehaviour {
                     // Player pressed the button too early
                     AudioManager.instance.Play("FailSound");
 
-                    timeManagerScript.GetTime(PlayerID, false);
+                    // timeManagerScript.GetTime(PlayerID, false);
 
                     PlayerLightGO.SetActive(true);
                     
@@ -76,6 +87,10 @@ public class PlayerSheet : MonoBehaviour {
                     ParticleSystem.MainModule main = bulbManagerScript.PlayerParticles.GetComponent<ParticleSystem>().main;
                     main.startColor = ColorManager.ParticlesRed;
                 }
+
+                // Check if every player pressed the button
+                GameManager.PlayerDoneCount++;
+                timeManagerScript.AllPlayersDone();
             } else {
                 // Player already pressed the button
                 AudioManager.instance.Play("FailSound");
@@ -91,7 +106,8 @@ public class PlayerSheet : MonoBehaviour {
 
     public void CleanUpPlayerSheet() {
         PlayerID = 0;
-        pressedButton = false;
+        PressedButton = false;
+        PlayerTime = -1;
     }
 
 }
