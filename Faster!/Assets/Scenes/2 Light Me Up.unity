@@ -355,8 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightBulbGO: {fileID: 2113786931}
   LevelUpBadge: {fileID: 21300000, guid: 4c15c73dd550e49888a934a2453d45d3, type: 3}
-  minDelay: 0.5
-  maxDelay: 1
+  minDelay: 1
+  maxDelay: 3
   ShowPopUps: 0
   levelBarSmoothSpeed: 3
   levelTextSmoothSpeed: 6
