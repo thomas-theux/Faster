@@ -128,6 +128,131 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actions.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[2]._keyboardKeyCode
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[5]._actionId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[5]._elementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[5]._elementIdentifierId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[5]._id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[5]._name
+      value: Controls
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[5]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[5]._descriptiveName
+      value: Controls
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[5]._userAssignable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[5]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.actionIdCounter
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[5]._keyboardKeyCode
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[4]._actionId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[4]._elementIdentifierId
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[5]._actionId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[5]._elementIdentifierId
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[3]._actionId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[3]._elementIdentifierId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[2]._actionId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[2]._elementIdentifierId
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[1]._actionId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770247870455795088, guid: 5d3907488659147b9abd761b5d775d68,
+        type: 3}
+      propertyPath: _userData.joystickMaps.Array.data[0].actionElementMaps.Array.data[1]._elementIdentifierId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7770247870455795089, guid: 5d3907488659147b9abd761b5d775d68,
         type: 3}
       propertyPath: m_Name

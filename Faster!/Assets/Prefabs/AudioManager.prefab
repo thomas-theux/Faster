@@ -117,3 +117,21 @@ MonoBehaviour:
     pitch: 2
     loop: 0
     source: {fileID: 0}
+  - name: Cancel
+    clip: {fileID: 8300000, guid: 87c651d381f504213b8f70c1dbad69a3, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ShowControls
+    clip: {fileID: 8300000, guid: cbb837071c44d4c06b82e90b6548d7e8, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Navigate
+    clip: {fileID: 8300000, guid: e699332686be8420a8a4da671b0a4d59, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

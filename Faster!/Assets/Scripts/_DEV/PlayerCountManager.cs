@@ -32,6 +32,8 @@ public class PlayerCountManager : MonoBehaviour {
 
     private void ChangePlayerCount() {
         if (arrowLeft) {
+            AudioManager.instance.Play("Navigate");
+            
             if (GameManager.ManualPlayerCount > 1) {
                 GameManager.ManualPlayerCount--;
             } else {
@@ -42,6 +44,8 @@ public class PlayerCountManager : MonoBehaviour {
         }
 
         if (arrowRight) {
+            AudioManager.instance.Play("Navigate");
+
             if (GameManager.ManualPlayerCount < GameManager.PlayerMax) {
                 GameManager.ManualPlayerCount++;
             } else {

@@ -6,9 +6,13 @@ using Rewired;
 
 public class MenuManager : MonoBehaviour {
 
+    public Canvas ShowControls;
+    private bool showingControls = false;
+
     // REWIRED
     private bool actionButton = false;
     private bool quitButton = false;
+    private bool controlsButton = false;
     // private bool restartButton = false;
 
 
@@ -19,16 +23,28 @@ public class MenuManager : MonoBehaviour {
         if (!GameManager.GameStarted) {
 
             // Start game
-            if (actionButton) {
-                AudioManager.instance.Play("ButtonPress");
-                GameManager.GameStarted = true;
-                SceneManager.LoadScene("2 Light Me Up");
+            if (!showingControls) {
+                if (actionButton) {
+                    AudioManager.instance.Play("ButtonPress");
+                    GameManager.GameStarted = true;
+                    SceneManager.LoadScene("2 Light Me Up");
+                }
+            }
+
+            // Show controls
+            if (controlsButton) {
+                AudioManager.instance.Play("ShowControls");
+
+                showingControls = !showingControls;
+                ShowControls.enabled = showingControls;
             }
 
         } else {
 
             // Quit to main menu
             if (quitButton) {
+                AudioManager.instance.Play("Cancel");
+
                 GameManager.GameStarted = false;
                 GameManager.PlayerLevelArr.Clear();
                 GameManager.ResetPlayerCounts();
@@ -62,6 +78,7 @@ public class MenuManager : MonoBehaviour {
     private void GetInput() {
         actionButton = ReInput.players.GetPlayer(0).GetButtonDown("Action");
         quitButton = ReInput.players.GetPlayer(0).GetButtonDown("Quit");
+        controlsButton = ReInput.players.GetPlayer(0).GetButtonDown("Controls");
         // restartButton = ReInput.players.GetPlayer(0).GetButtonDown("Restart");
     }
 
