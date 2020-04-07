@@ -47,7 +47,6 @@ public class TimeManager : MonoBehaviour {
 
             // Revert texts back to basic and display proper badge
             GameManager.PlayerInstances[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().text = GameManager.PlayerLevelArr[i] + "";
-            // GameManager.PlayerInstances[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().fontSize = 32;
             GameManager.PlayerInstances[i].GetComponent<BulbManager>().LevelText.GetComponent<TMP_Text>().color = ColorManager.KeyWhite;
 
             float newFillAmount = GameManager.PlayerLevelArr[i] / (float)GameManager.LevelMax;
@@ -127,7 +126,6 @@ public class TimeManager : MonoBehaviour {
             timerIsRunning = false;
             lightBulbGO.SetActive(true);
             lightBulbGO.GetComponent<Image>().color = ColorManager.KeyWhite;
-            // lightBulbGO.GetComponent<Image>().color = ColorManager.KeyGreen;
             LightIsOn = true;
         }
     }
@@ -136,20 +134,6 @@ public class TimeManager : MonoBehaviour {
     private void LightTimerRunning() {
         LightIsOnTimer += Time.deltaTime;
     }
-
-
-    // public void GetTime(int playerID, bool rightOnTime) {
-    //     float newTime = 999999;
-
-    //     if (rightOnTime) {
-    //         newTime = LightIsOnTimer;
-
-    //         // Calculate milliseconds
-    //         newTime *= 1000;
-    //     }
-
-    //     timesArr[playerID] = newTime;
-    // }
 
 
     public IEnumerator ShowPopUpsDelay() {
@@ -225,46 +209,6 @@ public class TimeManager : MonoBehaviour {
         } else {
             StartCoroutine(ContinueDelay());
         }
-
-
-
-
-
-
-
-
-
-
-
-        // // Check if players have the same time
-        // if (timesArr.Count >= 2 && rankingArr.Count >= 2 && timesArr[rankingArr[0]] == timesArr[rankingArr[1]]) {
-        //     print("skip");
-        //     StartCoroutine(ContinueDelay());
-        // } else {
-        //     float bestTime = 9999999;
-
-        //     for (int i = 0; i < GameManager.PlayerCount; i++) {
-        //         if (timesArr[i] < bestTime) {
-        //             bestTime = timesArr[i];
-        //         }
-        //     }
-
-        //     if (bestTime < 99999) {
-        //         findWinnerIndex = timesArr.IndexOf(bestTime);
-        //         GameManager.PlayerLevelArr[findWinnerIndex]++;
-
-        //         // Find best time ever
-        //         if (bestTime < GameManager.BestTimeEver) {
-        //             GameManager.BestTimeEver = bestTime;
-        //         }
-                
-        //         bulbManagerScriptWinner = GameManager.PlayerInstances[findWinnerIndex].GetComponent<BulbManager>();
-    
-        //         StartCoroutine(DelayThenWinnerParticle());
-        //     } else {
-        //         StartCoroutine(ContinueDelay());
-        //     }
-        // }
     }
 
 
